@@ -1,14 +1,14 @@
 import { userAPI } from "../API/api";
 import { updateObjectInArray } from "../utils/object-helpers";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET-USERS';
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLR-IS-FETCHING';
-const GET_USER_ID = 'GET-USER-ID';
-const TOGGLE_IS_FOLLOWING = 'TOGGLE-IS-FOLLOWING';
+const FOLLOW = 'mu-APP/search/FOLLOW';
+const UNFOLLOW = 'mu-APP/search/UNFOLLOW';
+const SET_USERS = 'mu-APP/search/SET-USERS';
+const SET_CURRENT_PAGE = 'mu-APP/search/SET-CURRENT-PAGE';
+const SET_TOTAL_COUNT = 'mu-APP/search/SET-TOTAL-COUNT';
+const TOGGLE_IS_FETCHING = 'mu-APP/search/TOGGLR-IS-FETCHING';
+const GET_USER_ID = 'mu-APP/search/GET-USER-ID';
+const TOGGLE_IS_FOLLOWING = 'mu-APP/search/TOGGLE-IS-FOLLOWING';
 
 let initialState = {
     users: [],

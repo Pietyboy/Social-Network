@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper, Content, PersonalImg, PersonalInfo, NewPostContainer, NewPostText, AddButton, PersonalPosts, Post } from "./Profile.styled"
+import { Wrapper, Content, PersonalImg, PersonalInfo, NewPostContainer, NewPostText, AddButton, PersonalPosts, Post, ChangePersonalImgButton } from "./Profile.styled"
 import photo from '../../image/Logo.jpg';
 import Preloader from "../Common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
@@ -20,6 +20,12 @@ const ProfileFunctional = React.memo(props => {
         return (<Preloader />)
     }
 
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length){
+            props.savePhoto(e.target.files[0]);
+        }
+    }
+
     return (
         <Wrapper>
             <Content>
@@ -31,6 +37,8 @@ const ProfileFunctional = React.memo(props => {
                     {props.profile.fullName}
                     {props.profile.lookingForAJob}
                     {props.profile.lookingForAJobDescription}
+
+                    {props.isOwner ? <ChangePersonalImgButton type='file' onChange={onMainPhotoSelected}></ChangePersonalImgButton> : ''}
                 </PersonalInfo>
 
                 <PersonalPosts>

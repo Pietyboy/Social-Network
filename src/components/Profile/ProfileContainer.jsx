@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileFunctional from "./ProfileFunctional";
-import { addPost, getProfile, getStatus, updateStatus } from '../../redux/profileReducer'
+import { addPost, getProfile, getStatus, updateStatus, savePhoto } from '../../redux/profileReducer'
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
@@ -8,11 +8,13 @@ import withParams from "../../hoc/withParams";
 
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+
+    refreshProfile() {
         let userId = this.props.params.userId;
-        if (!userId){
+        console.log('this.props.params.userId = ' + userId)
+        if (!userId) {
             userId = this.props.authorizedUserId;
-            if (!userId){
+            if (!userId) {
                 this.props.history.push('/login');
             }
         }
@@ -20,9 +22,20 @@ class ProfileContainer extends React.Component {
         this.props.getStatus(userId);
     }
 
+    componentDidMount() {
+        this.refreshProfile();
+    }
+
+    componentDidUpdate(prevProps, nextProps, snapshot) {
+        if (this.props.params.userId != prevProps.params.userId) {
+            this.refreshProfile();
+        }
+    }
+
     render() {
         return (
             <ProfileFunctional
+                isOwner={!this.props.params.userId}
                 posts={this.props.posts}
                 newPostText={this.props.newPostText}
                 profile={this.props.profile}
@@ -30,6 +43,7 @@ class ProfileContainer extends React.Component {
                 addPost={this.props.addPost}
                 status={this.props.status}
                 updateStatus={this.props.updateStatus}
+                savePhoto={this.props.savePhoto}
             />
         )
     }
@@ -49,7 +63,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { addPost, getProfile, getStatus, updateStatus }),
+    connect(mapStateToProps, { addPost, getProfile, getStatus, updateStatus, savePhoto }),
     withAuthRedirect,
     withParams
 )(ProfileContainer);

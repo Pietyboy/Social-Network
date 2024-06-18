@@ -1,4 +1,4 @@
-const newMessage = 'NEW-MESSAGE';
+const newMessage = 'mu-APP/messenger/NEW-MESSAGE';
 
 let initialState = {
     dialogs: [

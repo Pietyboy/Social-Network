@@ -36,6 +36,8 @@ export const PersonalInfo = styled.article`
     border: 1px solid #4b515a;
     border-radius: 6px;
     margin-left: 16px;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const NewPostContainer = styled.form`
@@ -88,3 +90,5 @@ export const Post = styled.article`
     border-bottom: 1px solid #4b515a;
     }
 `;
+
+export const ChangePersonalImgButton = styled.input``;
